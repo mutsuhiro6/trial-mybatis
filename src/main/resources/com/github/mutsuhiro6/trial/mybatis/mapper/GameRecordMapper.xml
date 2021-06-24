@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.mutsuhiro6.trial.mybatis.mapper.GameRecordMapper">
+    <insert id="insertGameRecord" parameterType="GameRecord">
+    <![CDATA[
+        INSERT INTO
+            game_record(game_date, team_name, opposing_team_name, game_result, score, opposing_score)
+        VALUES
+            (#{gameDate}, #{teamName}, #{opposingTeamName}, #{gameResult}, #{score}, #{opposingScore})
+    ]]>
+    </insert>
+    <select id="findByGameId" resultType="GameRecord">
+    <![CDATA[
+        SELECT 
+            *
+        FROM
+            game_record
+        WHERE
+            game_id = #{gameId}
+    ]]>
+    </select>
+</mapper>
