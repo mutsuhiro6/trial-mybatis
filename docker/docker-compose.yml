@@ -1,0 +1,33 @@
+version: '3'
+ 
+services:
+  postgres:
+    image: postgres:11
+    restart: always
+    environment:
+      POSTGRES_USER: trial_mybatis
+      POSTGRES_PASSWORD: trial_mybatis
+      PGPASSWORD: trial_mybatis
+      POSTGRES_DB: trial_mybatis
+      TZ: "Asia/Tokyo"
+    ports:
+      - 5432:5432
+    volumes:
+      - .docker/postgres:/var/lib/postgresql/data
+ 
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    restart: always
+    ports:
+      - 81:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: trial_mybatis@exemple.com
+      PGADMIN_DEFAULT_PASSWORD: trial_mybatis
+    volumes:
+      - .docker/pgadmin:/var/lib/pgadmin
+    depends_on:
+      - postgres
+ 
+volumes:
+  postgres:
+  pgadmin:
